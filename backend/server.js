@@ -2,23 +2,22 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+// dotenv ko sabse upar require karna behtar hota hai
+require('dotenv').config(); 
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 🔗 NEW UNIVERSAL CONNECTION STRING
+// 🌐 Test Route taake browser mein 'Cannot GET /' na aaye
+app.get('/', (req, res) => {
+  res.send('Zarvix Backend is running perfectly! 🚀');
+});
 
-// Agar dotenv pehle se nahi hai toh yeh line zaroori hai
-require('dotenv').config(); 
-
-// Asli link ki jagah process.env use karein
+// 🔗 MONGODB CONNECTION (Sirf Ek Dafa)
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("Database Connected Successfully"))
-  .catch((err) => console.log(err));
-
-// mongoose.connect(MONGO_URI)
-//   .then(() => console.log("🔥 BOOM! MongoDB Connected Successfully to Cloud Atlas!"))
-//   .catch((err) => console.error("❌ DB Connection Error:", err));
+   .then(() => console.log("🔥 BOOM! MongoDB Connected Successfully to Cloud Atlas!"))
+   .catch((err) => console.error("❌ DB Connection Error:", err));
 
 // Resume Schema Definition
 const ResumeSchema = new mongoose.Schema({
