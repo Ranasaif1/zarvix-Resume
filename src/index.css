@@ -1,0 +1,70 @@
+@import "tailwindcss";
+/* ==========================================================================
+   🖨️ ULTIMATE ATS RESUME PRINT ENGINE (Hides UI Controls & Force A4 Canvas)
+   ========================================================================== */
+@media print {
+  /* 1. Poori website par jo bhi buttons, forms aur headers hain sabko gayab karo */
+  body * {
+    visibility: hidden;
+  }
+
+  /* 2. Sirf Preview Panel aur uske andar ke elements ko visible rakho */
+  #preview-panel-root,
+  #preview-panel-root * {
+    visibility: visible;
+  }
+
+  /* 3. Resume Canvas ko bilkul top-left corner par fix karo taake khali space na bache */
+  #preview-panel-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 4. Background colors aur graphics ko force print karne ke liye */
+  html, body {
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* 5. Vercel aur Localhost ke default dynamic footers ko hide karne ke liye */
+  @page {
+    size: A4;
+    margin: 0mm !important;
+  }
+}
+
+/* YEH LINE BOHOT ZAROORI HAI - Iska matlab hai sirf print ke waqt yeh design chale */
+@media print {
+  
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area, #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+} 
+/* YEH AAKHRI BRACKET BHI LAZMI HAI */
