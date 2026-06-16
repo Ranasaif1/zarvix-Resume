@@ -7,12 +7,18 @@ app.use(cors());
 app.use(express.json());
 
 // 🔗 NEW UNIVERSAL CONNECTION STRING
-// Username: ranasaif9908_db_user | Password: RanaSaif12345
-const MONGO_URI = "mongodb+srv://ranasaif9908_db_user:RanaSaif12345@cluster0.lvtbger.mongodb.net/?appName=Cluster0";
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log("🔥 BOOM! MongoDB Connected Successfully to Cloud Atlas!"))
-  .catch((err) => console.error("❌ DB Connection Error:", err));
+// Agar dotenv pehle se nahi hai toh yeh line zaroori hai
+require('dotenv').config(); 
+
+// Asli link ki jagah process.env use karein
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("Database Connected Successfully"))
+  .catch((err) => console.log(err));
+
+// mongoose.connect(MONGO_URI)
+//   .then(() => console.log("🔥 BOOM! MongoDB Connected Successfully to Cloud Atlas!"))
+//   .catch((err) => console.error("❌ DB Connection Error:", err));
 
 // Resume Schema Definition
 const ResumeSchema = new mongoose.Schema({
