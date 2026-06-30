@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AboutPage = ({ setView = () => {} }) => {
+const AboutPage = ({ setView = () => { } }) => {
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-white">
 
@@ -53,35 +53,27 @@ const AboutPage = ({ setView = () => {} }) => {
           {/* ABOUT CONTENT */}
           <div className="bg-slate-950/40 border border-slate-800 rounded-3xl p-6 md:p-8 space-y-5">
 
-            <h2 className="text-2xl font-black text-white">
+            <h2 className="text-2xl font-black text-white text-center">
               Who We Are
             </h2>
 
-            <p className="text-slate-300 leading-relaxed text-justify">
+            {/* Har paragraph mein text-justify ki jagah text-left ka istemal karein */}
+            <p className="text-slate-300 leading-relaxed text-left">
               Welcome to{" "}
-              <span className="text-indigo-400 font-bold">
-                Zarvix Resume
-              </span>
-              , a modern resume-building platform designed to help job seekers
-              create professional and ATS-friendly resumes within minutes.
+              <span className="text-indigo-400 font-bold">Zarvix Resume</span>
+              , a modern resume-building platform designed to help job seekers create professional and ATS-friendly resumes within minutes.
             </p>
 
-            <p className="text-slate-300 leading-relaxed text-justify">
-              Whether you are a student, fresh graduate, experienced
-              professional, freelancer, or career changer, our platform makes
-              resume creation simple, fast, and effective.
+            <p className="text-slate-300 leading-relaxed text-left">
+              Whether you are a student, fresh graduate, experienced professional, freelancer, or career changer, our platform makes resume creation simple, fast, and effective.
             </p>
 
-            <p className="text-slate-300 leading-relaxed text-justify">
-              We provide professionally crafted resume templates optimized for
-              Applicant Tracking Systems (ATS), ensuring your resume is easily
-              readable by recruiters and hiring software.
+            <p className="text-slate-300 leading-relaxed text-left">
+              We provide professionally crafted resume templates optimized for Applicant Tracking Systems (ATS), ensuring your resume is easily readable by recruiters and hiring software.
             </p>
 
-            <p className="text-slate-300 leading-relaxed text-justify">
-              Our goal is to combine modern design, simplicity, and ATS
-              optimization so users can focus on getting interviews instead of
-              struggling with resume formatting.
+            <p className="text-slate-300 leading-relaxed text-left">
+              Our goal is to combine modern design, simplicity, and ATS optimization so users can focus on getting interviews instead of struggling with resume formatting.
             </p>
 
           </div>
@@ -132,9 +124,9 @@ const AboutPage = ({ setView = () => {} }) => {
 
             <button
               onClick={() => setView('builder')}
-              className="px-8 py-4 rounded-2xl font-black bg-linear-to-r from-indigo-500 via-cyan-500 to-purple-500 hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(99,102,241,0.4)]"
+              className="mt-6 w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-black transition text-sm sm:text-base"
             >
-              Build Resume Now 
+              Start Now
             </button>
 
           </div>

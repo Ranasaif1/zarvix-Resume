@@ -5,7 +5,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
   const [activeTab, setActiveTab] = useState('personal');
   const [loadingId, setLoadingId] = useState(null);
   const [skillInput, setSkillInput] = useState('');
-  
+
   // Greeting Modal State Configuration
   const [showThankYou, setShowThankYou] = useState(false);
 
@@ -17,7 +17,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
   const info = resumeData?.personalInfo || {};
 
   // 🔑 Google AI Key
-  const GEMINI_API_KEY = "AQ.Ab8RN6Kqhgb6dIVx-0XyinhSnIdOQI4oNgAoxVcF2cZhTPX0Ig"; 
+  const GEMINI_API_KEY = "AQ.Ab8RN6Kqhgb6dIVx-0XyinhSnIdOQI4oNgAoxVcF2cZhTPX0Ig";
 
   // 📌 Ensure Pinned Arrays Exist on Mount
   useEffect(() => {
@@ -132,7 +132,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
     setLoadingId(id);
     try {
       const prompt = `Write 3 professional resume action-oriented bullet points for the role of "${role}" at "${company || 'a company'}". Keep it concise, use strong action verbs, and make it ATS-friendly. Do not include introductory text, just provide the bullet points.`;
-      
+
       const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
@@ -157,7 +157,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
 
   return (
     <div className="space-y-6 font-sans pb-12 select-none text-slate-800 relative">
-      
+
       {/* ==========================================
           🎉 DYNAMIC PREMIUM GREETING THANK YOU MODAL PAGE
           ========================================== */}
@@ -173,16 +173,16 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
               Your high-quality ATS-friendly resume documentation has been processed successfully. We wish you the absolute best with your upcoming professional job recruitment screenings!
             </p>
             <div className="grid grid-cols-2 gap-2 pt-2">
-              <button 
-                type="button" 
-                onClick={() => setShowThankYou(false)} 
+              <button
+                type="button"
+                onClick={() => setShowThankYou(false)}
                 className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs p-3 rounded-xl border border-slate-200 transition"
               >
                 Modify Document
               </button>
-              <button 
-                type="button" 
-                onClick={() => window.location.reload()} 
+              <button
+                type="button"
+                onClick={() => window.location.reload()}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs p-3 rounded-xl shadow-lg shadow-indigo-600/20 transition"
               >
                 Go to Homepage
@@ -196,8 +196,8 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
       <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
         <div>
           <label className="block text-[10px] font-black uppercase tracking-widest text-indigo-600 mb-2">Select Architecture Canvas</label>
-          <select 
-            value={template} 
+          <select
+            value={template}
             onChange={(e) => setTemplate(e.target.value)}
             className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2.5 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer transition"
           >
@@ -215,11 +215,38 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
         </div>
 
         {/* NAVIGATION TABS BAR */}
-        <div className="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
-          <button type="button" onClick={() => setActiveTab('personal')} className={`text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'personal' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}>👤 Profile</button>
-          <button type="button" onClick={() => isPersonalValid ? setActiveTab('experience') : alert("Please complete all required profile fields first!")} className={`text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'experience' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}>💼 Experience</button>
-          <button type="button" onClick={() => isPersonalValid ? setActiveTab('education') : alert("Please complete all required profile fields first!")} className={`text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'education' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}>🎓 Studies</button>
-          <button type="button" onClick={() => isPersonalValid ? setActiveTab('extras') : alert("Please complete all required profile fields first!")} className={`text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'extras' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}>📂 Extras</button>
+        <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200">
+          <button
+            type="button"
+            onClick={() => setActiveTab('personal')}
+            className={`flex-1 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'personal' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}
+          >
+            <span>👤</span> <span className="hidden md:inline">Profile</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => isPersonalValid ? setActiveTab('experience') : alert("Please complete all required profile fields first!")}
+            className={`flex-1 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'experience' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}
+          >
+            <span>💼</span> <span className="hidden md:inline">Experience</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => isPersonalValid ? setActiveTab('education') : alert("Please complete all required profile fields first!")}
+            className={`flex-1 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'education' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}
+          >
+            <span>🎓</span> <span className="hidden md:inline">Studies</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => isPersonalValid ? setActiveTab('extras') : alert("Please complete all required profile fields first!")}
+            className={`flex-1 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-wider py-2 rounded-md transition ${activeTab === 'extras' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:text-slate-800'}`}
+          >
+            <span>📂</span> <span className="hidden md:inline">Extras</span>
+          </button>
         </div>
       </div>
 
@@ -262,7 +289,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
             <span>💼 Professional Tracks</span>
             <button type="button" onClick={() => addArrayItem('experience', { company: '', role: '', duration: 'Jan 2023 - Present', description: '', isCurrent: true })} className="text-[10px] bg-indigo-50 font-bold text-indigo-600 border border-indigo-200 px-2.5 py-1 rounded hover:bg-indigo-100">+ Add Experience</button>
           </h3>
-          
+
           {(resumeData?.experience || []).map((exp, idx) => {
             const currentDuration = exp.duration || "Jan 2023 - Present";
             const parts = currentDuration.split(' - ');
@@ -308,14 +335,14 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
                     <div className="space-y-1">
                       <span className="text-[10px] font-medium text-slate-500">Start:</span>
                       <div className="flex gap-1">
-                        <select value={startMonth} onChange={(e) => handleExpTimelineChange('sm', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700">{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
+                        <select value={startMonth} onChange={(e) => handleExpTimelineChange('sm', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700">{["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
                         <select value={startYear} onChange={(e) => handleExpTimelineChange('sy', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded text-xs text-slate-700">{Array.from({ length: 30 }, (_, i) => 2010 + i).map(y => <option key={y} value={y}>{y}</option>)}</select>
                       </div>
                     </div>
                     <div className="space-y-1">
                       <span className="text-[10px] font-medium text-slate-500">End:</span>
                       <div className="flex gap-1">
-                        <select disabled={exp.isCurrent} value={endMonth} onChange={(e) => handleExpTimelineChange('em', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700 disabled:opacity-40">{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
+                        <select disabled={exp.isCurrent} value={endMonth} onChange={(e) => handleExpTimelineChange('em', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700 disabled:opacity-40">{["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
                         <select disabled={exp.isCurrent} value={endYear} onChange={(e) => handleExpTimelineChange('ey', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded text-xs text-slate-700 disabled:opacity-40">{Array.from({ length: 30 }, (_, i) => 2010 + i).map(y => <option key={y} value={y}>{y}</option>)}</select>
                       </div>
                     </div>
@@ -366,7 +393,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
             <span>🎓 Academic Foundations</span>
             <button type="button" onClick={() => addArrayItem('education', { institute: '', degree: 'BS Computer Science', duration: 'Jan 2022 - Present', isCurrent: true })} className="text-[10px] bg-indigo-50 font-bold text-indigo-600 border border-indigo-200 px-2.5 py-1 rounded hover:bg-indigo-100">+ Add Studies</button>
           </h3>
-          
+
           {(resumeData?.education || []).map((edu, idx) => {
             const currentDuration = edu.duration || "Jan 2022 - Present";
             const parts = currentDuration.split(' - ');
@@ -430,14 +457,14 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
                     <div className="space-y-1">
                       <span className="text-[10px] font-medium text-slate-500">Start:</span>
                       <div className="flex gap-1">
-                        <select value={startMonth} onChange={(e) => handleTimelineChange('sm', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700">{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
+                        <select value={startMonth} onChange={(e) => handleTimelineChange('sm', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700">{["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
                         <select value={startYear} onChange={(e) => handleTimelineChange('sy', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded text-xs text-slate-700">{Array.from({ length: 30 }, (_, i) => 2010 + i).map(y => <option key={y} value={y}>{y}</option>)}</select>
                       </div>
                     </div>
                     <div className="space-y-1">
                       <span className="text-[10px] font-medium text-slate-500">End / Expected:</span>
                       <div className="flex gap-1">
-                        <select disabled={edu.isCurrent} value={endMonth} onChange={(e) => handleTimelineChange('em', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700 disabled:opacity-40">{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
+                        <select disabled={edu.isCurrent} value={endMonth} onChange={(e) => handleTimelineChange('em', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded grow text-xs text-slate-700 disabled:opacity-40">{["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map(m => <option key={m} value={m}>{m}</option>)}</select>
                         <select disabled={edu.isCurrent} value={endYear} onChange={(e) => handleTimelineChange('ey', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded text-xs text-slate-700 disabled:opacity-40">{Array.from({ length: 30 }, (_, i) => 2010 + i).map(y => <option key={y} value={y}>{y}</option>)}</select>
                       </div>
                     </div>
@@ -473,7 +500,7 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
                 <div className="grid grid-cols-3 gap-2 bg-white p-2 rounded-md border border-slate-200 items-center">
                   <input type="text" value={cert.duration || ''} onChange={(e) => updateArrayField('certificates', idx, 'duration', e.target.value)} placeholder="Duration" className="bg-slate-50 border border-slate-300 rounded-lg p-1 text-xs font-semibold text-slate-800" />
                   <select value={cert.month || 'Jan'} onChange={(e) => updateArrayField('certificates', idx, 'month', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded text-xs text-slate-700">
-                    {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map(m => <option key={m} value={m}>{m}</option>)}
+                    {["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map(m => <option key={m} value={m}>{m}</option>)}
                   </select>
                   <select value={cert.year || '2026'} onChange={(e) => updateArrayField('certificates', idx, 'year', e.target.value)} className="bg-slate-50 border border-slate-300 p-1 rounded text-xs text-slate-700">
                     {Array.from({ length: 20 }, (_, i) => 2015 + i).map(y => <option key={y} value={y}>{y}</option>)}
@@ -527,14 +554,14 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
           {/* TOGGLE REFERENCES ON TICK CHECKBOX */}
           <div className="pt-3 border-t border-slate-100 space-y-2">
             <label className="flex items-center gap-2 text-xs text-slate-700 font-black cursor-pointer select-none">
-              <input 
-                type="checkbox" 
-                checked={showReference} 
+              <input
+                type="checkbox"
+                checked={showReference}
                 onChange={(e) => {
                   setShowReference(e.target.checked);
                   setResumeData(prev => ({ ...prev, referenceMode: e.target.checked ? "Available upon request" : "" }));
                 }}
-                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4 cursor-pointer" 
+                className="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4 cursor-pointer"
               />
               Include Reference Section in Resume Layout? 📋
             </label>
@@ -554,12 +581,12 @@ function FormPanel({ resumeData, template, setTemplate, setResumeData }) {
 
       {/* 💾 EMERALD DOWNLOAD PRINT WITH GREETING POP-UP ACTION */}
       <div className="pt-2">
-        <button 
-          type="button" 
-          onClick={executePrintWithGreeting} 
+        <button
+          type="button"
+          onClick={executePrintWithGreeting}
           className="w-full bg-linear-to-r from-emerald-600 to-teal-500 hover:from-emerald-700 hover:to-teal-600 text-white font-black text-xs uppercase tracking-wider p-4 rounded-xl shadow-lg transition duration-100 transform active:scale-[0.99] flex items-center justify-center gap-2"
         >
-          Download / Print High-Quality PDF Document 
+          Download Resume PDF
         </button>
       </div>
 

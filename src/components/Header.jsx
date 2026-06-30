@@ -21,26 +21,17 @@ const Header = ({ view, setView }) => {
         {/* LOGO */}
         <motion.div
           onClick={() => setView('home')}
-          initial={{ x: -40, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="cursor-pointer flex items-center gap-3"
+          className="cursor-pointer flex items-center gap-2" // gap kam kiya
         >
           <motion.img
             src={logo}
             alt="zarvix-logo"
-            whileHover={{ rotate: 5, scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="h-10 w-auto object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]"
+            className="h-8 w-auto object-contain" // size thoda chota kiya mobile ke liye
           />
 
-          <div className="flex flex-col leading-tight">
-            <span className="text-white font-extrabold text-lg tracking-wide">
-              Zarvix Resume
-            </span>
-            <span className="text-slate-400 text-[10px] tracking-widest uppercase">
-              Build. Design. Get Hired.
-            </span>
+          <div className="hidden sm:flex flex-col leading-tight"> {/* sirf baray screens par dikhayen */}
+            <span className="text-white font-extrabold text-sm tracking-wide">Zarvix Resume</span>
+            <span className="text-slate-400 text-[8px] tracking-widest uppercase">Build. Design. Get Hired.</span>
           </div>
         </motion.div>
 

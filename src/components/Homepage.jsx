@@ -80,7 +80,7 @@ const HomePage = ({ setView, atsScore, designCount }) => {
         <div className="mt-28 w-full max-w-6xl">
 
           <h2 className="text-3xl font-black mb-10">
-            Why Professionals Love Zarvix 
+            Why Professionals Love Zarvix
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -108,7 +108,7 @@ const HomePage = ({ setView, atsScore, designCount }) => {
         <div className="mt-28 w-full max-w-5xl">
 
           <h2 className="text-3xl font-black mb-10">
-            How It Works 
+            How It Works
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6 text-left">
@@ -150,7 +150,7 @@ const HomePage = ({ setView, atsScore, designCount }) => {
 
           <button
             onClick={() => setView('builder')}
-            className="mt-6 px-10 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-black transition"
+            className="mt-6 w-full sm:w-auto px-8 py-3 sm:px-10 sm:py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-black transition text-sm sm:text-base"
           >
             Get Started Now
           </button>

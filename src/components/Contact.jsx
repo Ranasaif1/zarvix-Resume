@@ -113,8 +113,8 @@ const ContactPage = () => {
             transition={{ duration: 0.6 }}
             className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-2xl shadow-2xl"
           >
-            <h2 className="text-3xl font-black text-white mb-2">Send a Message</h2>
-            <p className="text-slate-400 mb-8">
+            <h2 className="text-2xl font-black text-white mb-2 text-center">Send a Message</h2>
+            <p className="text-slate-400 mb-8 text-center">
               Fill out the form below and we'll get back to you shortly.
             </p>
 

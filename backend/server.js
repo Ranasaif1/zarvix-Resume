@@ -59,3 +59,38 @@ app.get('/api/resume/get', async (req, res) => {
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`🚀 Backend server ready on port ${PORT}`));
+
+// Naya Schema
+const ReviewSchema = new mongoose.Schema({
+  name: { type: String, default: "Anonymous" },
+  rating: Number,
+  comment: String,
+  createdAt: { type: Date, default: Date.now }
+});
+const Review = mongoose.model('Review', ReviewSchema);
+
+// Naya API Route
+app.post('/api/reviews/submit', async (req, res) => {
+  try {
+    const newReview = new Review(req.body);
+    await newReview.save();
+    res.status(201).json({ success: true });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Reviews fetch karne ka route (Home page par dikhane ke liye)
+app.get('/api/reviews/get', async (req, res) => {
+  const reviews = await Review.find().sort({ createdAt: -1 }).limit(5);
+  res.json(reviews);
+});
+
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const dbURI = process.env.MONGODB_URI;
+
+mongoose.connect(dbURI)
+  .then(() => console.log("Database Connected Successfully"))
+  .catch((err) => console.log("Database Connection Error:", err));

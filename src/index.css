@@ -3,6 +3,7 @@
    🖨️ ULTIMATE ATS RESUME PRINT ENGINE (Hides UI Controls & Force A4 Canvas)
    ========================================================================== */
 @media print {
+
   /* 1. Poori website par jo bhi buttons, forms aur headers hain sabko gayab karo */
   body * {
     visibility: hidden;
@@ -28,7 +29,8 @@
   }
 
   /* 4. Background colors aur graphics ko force print karne ke liye */
-  html, body {
+  html,
+  body {
     background-color: #ffffff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -43,12 +45,13 @@
 
 /* YEH LINE BOHOT ZAROORI HAI - Iska matlab hai sirf print ke waqt yeh design chale */
 @media print {
-  
+
   body * {
     visibility: hidden;
   }
 
-  #print-area, #print-area * {
+  #print-area,
+  #print-area * {
     visibility: visible;
   }
 
@@ -66,5 +69,13 @@
     print-color-adjust: exact !important;
   }
 
-} 
+}
+
 /* YEH AAKHRI BRACKET BHI LAZMI HAI */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
